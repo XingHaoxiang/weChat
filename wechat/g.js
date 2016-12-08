@@ -3,7 +3,7 @@ var getRawBody = require('raw-body');
 var typer = require('media-typer');
 var Wechat = require('./wechat');
 var util = require('./util');
-
+var weixin = require('../weixin')
 module.exports = function(opts){
 	var wechat = new Wechat(opts);
 	return function(req,res){
@@ -40,26 +40,8 @@ module.exports = function(opts){
 			    // console.log(content._rejectionHandler0.xml);
 			    var message = util.formatMessage(content._rejectionHandler0.xml);
 			    // console.log(message);
-
-			    if (message.MsgType === 'event') {
-			    	if (message.Event === 'subscribe') {
-			    		var now = new Date().getTime();
-
-			    		// that.status = 200;
-			    		// that.type = 'application/xml'
-			    		var reply =  '<xml>'
-									+'<ToUserName><![CDATA['+message.FromUserName+']]></ToUserName>'
-									+'<FromUserName><![CDATA['+message.ToUserName+']]></FromUserName>'
-									+'<CreateTime>'+now+'</CreateTime>'
-									+'<MsgType><![CDATA[text]]></MsgType>'
-									+'<Content><![CDATA[亲爱滴~你终于关注我了]]></Content>'
-									+'</xml>';
-						console.log(reply);
-						res.end(reply);
-			    		// that.body =reply;
-			    	}
-			    }
-
+			    weixin.reply(message,req,res);
+			    
 			  });
   			
 		}
