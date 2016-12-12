@@ -7,9 +7,9 @@ var wechat_file = path.join(__dirname,'./config/wechat.txt');
 
 var config = {
 	wechat:{
-		appId : 'wx461baad951f54348',
-		appSecret : 'b417cc8b628df610d9de890c1e288e1c',
-		token : 'xinghaoxiang',
+		appId : 'your appId',
+		appSecret : 'your appSecret',
+		token : 'your token',
 		getAccessToken: function(){
 			return util.readFileAsync(wechat_file)
 		},
