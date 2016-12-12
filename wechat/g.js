@@ -4,6 +4,7 @@ var typer = require('media-typer');
 var Wechat = require('./wechat');
 var util = require('./util');
 var weixin = require('../weixin')
+
 module.exports = function(opts){
 	var wechat = new Wechat(opts);
 	return function(req,res){
@@ -40,8 +41,11 @@ module.exports = function(opts){
 			    // console.log(content._rejectionHandler0.xml);
 			    var message = util.formatMessage(content._rejectionHandler0.xml);
 			    // console.log(message);
-			    weixin.reply(message,req,res);
-			    
+			    // tpl.compiled(message);
+			    // weixin.reply(message,req,res);
+			    // var c = util.tpl(content,message);
+			    // console.log(c);
+			    wechat.reply(req,res,message);
 			  });
   			
 		}
